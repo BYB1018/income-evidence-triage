@@ -1,0 +1,15 @@
+{
+  "skill": "income-evidence-triage",
+  "version": "0.1.0",
+  "source_book": "24 条 Bilibili AI 搞钱视频证据包",
+  "darwin_compatible": true,
+  "test_cases": [
+    {"id":"should-trigger-01","type":"should_trigger","prompt":"这个 Agent 晒出日赚 500 美元截图，我该不该马上照做？","expected_behavior":"激活本 Skill，拆收入声明并按证据等级限制投入。","notes":"宣传案例可信度判断"},
+    {"id":"should-trigger-02","type":"should_trigger","prompt":"视频 10 万播放、200 注册、0 付款，能说需求成立吗？","expected_behavior":"激活本 Skill，区分流量、意向和付款证据。","notes":"跨层级误读"},
+    {"id":"should-trigger-03","type":"should_trigger","prompt":"一个视频把面试、涨粉和两个咨询合在一起，宣称已经跑通变现，这个案例可信到哪一步？","expected_behavior":"激活本 Skill，把外部案例按收入线与证据等级拆开，只支持到对应层级。","notes":"外部案例跨收入线混算"},
+    {"id":"should-not-trigger-01","type":"should_not_trigger","prompt":"帮我核对这份利润表的会计分录。","expected_behavior":"不激活；这是财务审计/会计任务。","notes":"专业审计诱饵"},
+    {"id":"should-not-trigger-02","type":"should_not_trigger","prompt":"我已确认 GEO 有客户，怎么做第一份五页采样报告？","expected_behavior":"不激活；应优先激活 geo-sampling-report-retest。","notes":"兄弟 Skill 混淆"},
+    {"id":"edge-01","type":"edge_case","prompt":"朋友已经付了 100 元买我的模板，这算验证吗？","expected_behavior":"激活但降权说明：是真实付款证据，熟人样本不能代表公开市场。","notes":"付款真实性与样本偏差并存"}
+  ],
+  "minimum_pass_rate": 0.8
+}
